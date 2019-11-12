@@ -19,6 +19,12 @@ If you haven't noticed already, python is your friend. This one I solved using `
 #### First Grep
 Easy grep, solved using ```cat file | grep "pico"```
 
+#### Resources
+Read the source code.
+
+#### strings it
+The name gives it away, but use strings to find the flag for this one ```strings strings | grep "pico"```
+
 ## Forensics
 
 #### Glory of the Garden
@@ -30,13 +36,16 @@ Another easy one, just unzip.
 ## Cryptography
 
 #### The Numbers
-This is another once where knowing the flag format helps us out significantly. We can see ```{ }``` which is part of our flag format, and can also see that none of the numbers are greater than 26. This probably means it's a simple substitution cypher. To solve this I wrote a pythons script that takes the alphabet and the provided numbers to print out the flag. ```python the_numbers.py```
+This is another one where knowing the flag format helps us out significantly. We can see ```{ }``` which is part of our flag format, and can also see that none of the numbers are greater than 26. This probably means it's a simple substitution cypher. To solve this I wrote a pythons script that takes the alphabet and the provided numbers to print out the flag. ```python the_numbers.py```
 
 #### 13
 This is a caesar cipher, so just decode like any other.
 
 #### Easy 1
 This is vigenere cipher which we can pretty much tell by the provided table. To solve this one I wrote a python script ```easy1.py```
+
+#### caesar
+As the name implies this is another caesar cipher. The trick to this one is finding the correct ROT.
 
 ## Binary Exploitation
 
@@ -68,7 +77,13 @@ This one requires a basic overflow to retreive the flag. We can see that the buf
 #### Insp3ct0r
 This one really doesn't need much info. Read all of the source code.
 
+#### logon
+If you view the session cookies for this web app you'll see there is a flag for admin that is currently set to false. If you edit the cookie and set this to true you'll be able to retrive the flag.
+
 ## Reverse Engineering
 
 #### vault-door-training
 Source code is your friend.
+
+#### dont-use-client-side
+This is a lot like the hackthebox signup page. If you have a very basic understanding of JavaScript you'll be able to decode the 'algorithm' for the password verification.
