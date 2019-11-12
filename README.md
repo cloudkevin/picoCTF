@@ -113,3 +113,6 @@ This is a lot like the hackthebox signup page. If you have a very basic understa
 
 #### vault-door-1
 This challenge involves reading the Java source code and reverse engineering the algorithm being used to validate the password.
+
+#### vault-door-3
+To solve this one you need to reverese engineer the Java code used for password validation. I created my Java code to mirror the validation function, then used ```node``` to execute line by line and get the flag. The code for this is in ```vault-door-3.java```.
