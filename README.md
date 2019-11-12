@@ -40,6 +40,12 @@ Solve this by piping grep after netcat ```nc 2019shell1.picoctf.com 63345 | grep
 #### whats-the-difference
 You're given 2 images with one being a corrupted version of the other. I used a python script to compare the 2 images and return the differences. ```python whats-the-difference.py```
 
+#### where-is-the-file
+This one was really easy. Make sure to always list files with ```ls -la``` so you can view hidden ones. Once you find the file use ```cat``` to get the flag.
+
+#### flag_shop
+This was a fun one to solve. If you look at ```store.c``` you'll see that ```account_balance = account_balance - total_cost``` when purchasing the first flag option, so we'll want to give that a negative number if possible to increase our balance. If you input a large number like 999999999 you'll see that it applies negatively, thus incresing our balance. We can then use that to buy the second flag in the system which reveals our flag text.
+
 ## Forensics
 
 #### Glory of the Garden
@@ -47,6 +53,12 @@ I went straight to the basics on this one. Flags are often hidden at the end of 
 
 #### unzip
 Another easy one, just unzip.
+
+#### What Lies Within
+This was hard to solve because the first 2 tools I used came up empty. Probably user error. The flag is hidden in the least significant bit of each pixel so I ended up using ```zsteg```
+
+####shark on wire 1
+This was another really fun one for me. The first thing I did was waste a ton of time reading through the packets in wireshark. After doing that for a bit I started trying different filters, eventually following the UDP stream with ```udp.stream eq 6```. When you read through the packets in the stream you'll see that byte 42 of each packet contains part of the flag. If you combine these together you'll get the flag.
 
 ## Cryptography
 
