@@ -25,6 +25,9 @@ Read the source code.
 #### strings it
 The name gives it away, but use strings to find the flag for this one ```strings strings | grep "pico"```
 
+#### what's a net cat?
+This one is super simple. Use ```netcat 2019shell1.picoctf.com 12265``` to connect to the server and retrieve the flag.
+
 ## Forensics
 
 #### Glory of the Garden
@@ -66,10 +69,17 @@ echo -e '\x31\xc9\x51\x68\x74\x00\x00\x00\x68\x67\x2e\x74\x78\x68\x2f\x66\x6c\x6
 This one is too simple to need an explanation.
 
 #### OverFlow 0
-This one requires a basic overflow to retreive the flag. We can see that the buffer is 128 bytes, so we'll feed it more than that to crash the program and retrive the flag.
-  
+This one requires a basic overflow to retreive the flag. We can see that the buffer is 128 bytes, so we'll feed it more than that to crash the program and retreive the flag.
+
+#### OverFlow 1
+The first thing you want to do for this challenge is look over the source code in ```vuln.c```. There are a few things to note here. First of all we can see that the buffer size is 64 bytes. We can see that when we run the program it gives us the return memory address, and also that there is a ```flag()``` function that's never called. It looks like we'll have to use a buffer overflow to execute the ```flag()``` function and get our flag. Another thing to note is what is actually allowing this buffer overflow to happen. Since the program is using ```gets(buf)``` it doesn't actually care about the buffer, it just keeps reading until a new line which ultimately overflows it.
+
+To get started we'll want to get some basic memory information. Since this one gives us the return address as part of the main ```vuln()``` function we can run the program and enter something less than 64 bytes to see normal behaviour. After doing this we can see that the normal address is ```0x8048705```. Now we'll look at the program to find the address of the flag function. To do this I opened the vuln program with ```gdb vuln``` and examined the ```flag()``` function with ```disas flag```. We can now see that this address is ```0x080485e6```. One last thing is that since this is Intel architecture we'll need to convert to little endian before running running anything, ```\xe6\x85\x04\x08```.
+
+It took a little bit of playing around to retrive the flag, but I've provided my code below. One tip while doing this is to alternate the letters that you're using for your buffer. Since the program prints the return memory address after execution, you can use that to see where you're overwriting the memory. In my case I noticed 44 in the address which is ```D (0x44)```, so I knew to back off my padding by a few characters.
+
 <code>
-./vuln 666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666
+cat <(echo -e '666666666666666666666666666666666666666666666666666666666666666AAAABBBBCCCCD\xe6\x85\x04\x08') - | ./vuln
 </code>
 
 ## Web Exploitation
@@ -80,6 +90,9 @@ This one really doesn't need much info. Read all of the source code.
 #### logon
 If you view the session cookies for this web app you'll see there is a flag for admin that is currently set to false. If you edit the cookie and set this to true you'll be able to retrive the flag.
 
+#### where are the robots
+This is web exploitation 101. Always check the ```robots.txt``` file.
+
 ## Reverse Engineering
 
 #### vault-door-training
@@ -87,3 +100,6 @@ Source code is your friend.
 
 #### dont-use-client-side
 This is a lot like the hackthebox signup page. If you have a very basic understanding of JavaScript you'll be able to decode the 'algorithm' for the password verification.
+
+#### vault-door-1
+This challenge involves reading the Java source code and reverse engineering the algorithm being used to validate the password.
