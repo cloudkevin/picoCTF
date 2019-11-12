@@ -28,6 +28,18 @@ The name gives it away, but use strings to find the flag for this one ```strings
 #### what's a net cat?
 This one is super simple. Use ```netcat 2019shell1.picoctf.com 12265``` to connect to the server and retrieve the flag.
 
+#### Based
+Netcat to the server then convert the provided data from binary, octal, and hexadecimal.
+
+#### First Grep: Part 2
+Use grep recursively to find the flag ```grep -r "picoCTF"```
+
+#### plumbing
+Solve this by piping grep after netcat ```nc 2019shell1.picoctf.com 63345 | grep "picoCTF"```
+
+#### whats-the-difference
+You're given 2 images with one being a corrupted version of the other. I used a python script to compare the 2 images and return the differences. ```python whats-the-difference.py```
+
 ## Forensics
 
 #### Glory of the Garden
