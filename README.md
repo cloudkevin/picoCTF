@@ -76,7 +76,7 @@ The first thing you want to do for this challenge is look over the source code i
 
 To get started we'll want to get some basic memory information. Since this one gives us the return address as part of the main ```vuln()``` function we can run the program and enter something less than 64 bytes to see normal behaviour. After doing this we can see that the normal address is ```0x8048705```. Now we'll look at the program to find the address of the flag function. To do this I opened the vuln program with ```gdb vuln``` and examined the ```flag()``` function with ```disas flag```. We can now see that this address is ```0x080485e6```. One last thing is that since this is Intel architecture we'll need to convert to little endian before running running anything, ```\xe6\x85\x04\x08```.
 
-It took a little bit of playing around to retrive the flag, but I've provided my code below. One tip while doing this is to alternate the letters that you're using for your buffer. Since the program prints the return memory address after execution, you can use that to see where you're overwriting the memory. In my case I noticed 44 in the address which is ```D (0x44)```, so I knew to back off my padding by a few characters.
+It took a little bit of playing around to retrieve the flag, but I've provided my code below. One tip while doing this is to alternate the letters that you're using for your buffer. Since the program prints the return memory address after execution, you can use that to see where you're overwriting the memory. In my case I noticed 44 in the address which is ```D (0x44)```, so I knew to back off my padding by a few characters.
 
 <code>
 cat <(echo -e '666666666666666666666666666666666666666666666666666666666666666AAAABBBBCCCCD\xe6\x85\x04\x08') - | ./vuln
