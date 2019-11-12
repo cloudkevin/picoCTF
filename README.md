@@ -39,7 +39,7 @@ Another easy one, just unzip.
 ## Cryptography
 
 #### The Numbers
-This is another one where knowing the flag format helps us out significantly. We can see ```{ }``` which is part of our flag format, and can also see that none of the numbers are greater than 26. This probably means it's a simple substitution cypher. To solve this I wrote a pythons script that takes the alphabet and the provided numbers to print out the flag. ```python the_numbers.py```
+This is another one where knowing the flag format helps us out significantly. We can see ```{ }``` which is part of our flag format, and can also see that none of the numbers are greater than 26. This probably means it's a simple substitution cypher. To solve this I wrote a python script that takes the alphabet and the provided numbers to print out the flag. ```python the_numbers.py```
 
 #### 13
 This is a caesar cipher, so just decode like any other.
