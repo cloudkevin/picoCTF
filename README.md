@@ -57,7 +57,7 @@ Another easy one, just unzip.
 #### What Lies Within
 This was hard to solve because the first 2 tools I used came up empty. Probably user error. The flag is hidden in the least significant bit of each pixel so I ended up using ```zsteg```
 
-####shark on wire 1
+#### shark on wire 1
 This was another really fun one for me. The first thing I did was waste a ton of time reading through the packets in wireshark. After doing that for a bit I started trying different filters, eventually following the UDP stream with ```udp.stream eq 6```. When you read through the packets in the stream you'll see that byte 42 of each packet contains part of the flag. If you combine these together you'll get the flag.
 
 ## Cryptography
